@@ -1,0 +1,60 @@
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  .loader path:nth-child(1) {
+    stroke-dasharray: 505;
+    stroke-dashoffset: 505;
+    transform-origin: 3.5625rem 3.9063rem;
+    animation: line-animation 2.5s cubic-bezier(0.31, 0, 0.25, 4) forwards,
+      shrinkOut 1.5s ease-in forwards 2.3s;
+  }
+  .loader-circle {
+    stroke: #cbcabc;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 1 666;
+    stroke-dashoffset: 666;
+    transform-origin: 57px 62.5px;
+    animation: snake 2.5s ease-in-out forwards, grow 2.5s ease-in-out forwards,
+      shrinkOut 1.5s ease-in forwards 2.3s;
+  }
+}
+
+@keyframes snake {
+  from {
+    stroke-dashoffset: 666;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes grow {
+  from {
+    stroke-dasharray: 1 666;
+  }
+  to {
+    stroke-dasharray: 666 0;
+  }
+}
+
+@keyframes line-animation {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes shrinkOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
