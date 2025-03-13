@@ -111,25 +111,40 @@ const Navbar = () => {
                     ease: [0.33, 1, 0.68, 1],
                     delay,
                   }}
+                  style={{ position: "relative", overflow: "hidden" }} // Ensure overflow is hidden
                 >
-                  <motion.span
-                    className="menu-text"
-                    whileHover={{
-                      color: "rgb(0,0,0)",
-                      backgroundColor: "rgb(255,255,255)",
-                      transition: { duration: 0.3 },
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {link}
-                  </motion.span>
+                  {/* Wrapper for text + background */}
                   <motion.div
-                    className="hover-bg"
-                    initial={{ scaleY: 0 }}
-                    whileHover={{ scaleY: 1 }}
-                    exit={{ scaleY: 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  />
+                    className="menu-text-wrapper"
+                    style={{ position: "relative", overflow: "hidden" }} // Clip the background animation
+                  >
+                    {/* Text */}
+                    <motion.span
+                      className="menu-text"
+                      whileHover={{ color: "rgb(0,0,0)" }}
+                      transition={{ duration: 0.3 }}
+                      style={{ position: "relative", zIndex: 2 }}
+                    >
+                      {link}
+                    </motion.span>
+
+                    {/* Background Animation */}
+                    <motion.div
+                      className="hover-bg"
+                      initial={{ translateY: "100%" }} // Start fully hidden
+                      whileHover={{ translateY: "0%" }} // Move up on hover
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      style={{
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        background: "rgb(255,255,255)",
+                        zIndex: 1,
+                      }}
+                    />
+                  </motion.div>
                 </motion.li>
               );
             })}
