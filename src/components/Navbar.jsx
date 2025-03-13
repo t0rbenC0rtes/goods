@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import Logo from "./Logo.jsx";
 
@@ -9,7 +10,18 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuItemsRef = useRef([]);
 
-  const menuItems = ["Home", "Work", "Services", "About", "Clients", "Careers", "Contact"];
+  const menuItems = useMemo(
+    () => [
+      "Home",
+      "Work",
+      "Services",
+      "About",
+      "Clients",
+      "Careers",
+      "Contact",
+    ],
+    []
+  );
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -20,9 +32,17 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY) {
-        gsap.to(".navbar-logo", { opacity: 0, duration: 0.5, ease: "power2.out" });
+        gsap.to(".navbar-logo", {
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        });
       } else {
-        gsap.to(".navbar-logo", { opacity: 1, duration: 0.5, ease: "power2.out" });
+        gsap.to(".navbar-logo", {
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out",
+        });
       }
 
       if (currentScrollY > 50 && atTop) {
@@ -59,35 +79,7 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
     document.body.style.overflow = isOpen ? "auto" : "hidden";
-
-    if (!isOpen) {
-      menuItems.forEach((item, index) => {
-        const delay = item.length * 0.07; // Delay based on text length
-        gsap.fromTo(
-          menuItemsRef.current[index],
-          { y: "100%", opacity: 0 },
-          { y: "0%", opacity: 1, duration: 0.6, ease: "power3.out", delay }
-        );
-      });
-    }
   };
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    menuItems.forEach((item, index) => {
-      const delay = item.length * 0.07; // Delay based on text length
-      gsap.set(menuItemsRef.current[index], { y: "100%", opacity: 0 });
-
-      gsap.to(menuItemsRef.current[index], {
-        y: "0%",
-        opacity: 1,
-        duration: 0.6,
-        ease: "power3.linear",
-        delay,
-      });
-    });
-  }, [isOpen]);
 
   return (
     <nav ref={navbarRef} className="navbar">
@@ -100,18 +92,47 @@ const Navbar = () => {
 
       {isOpen && (
         <div className="modal">
-          <button className="close-button" onClick={toggleMenu}>×</button>
+          <button className="close-button" onClick={toggleMenu}>
+            ×
+          </button>
           <ul className="modal-links">
-            {menuItems.map((link, index) => (
-              <li
-                key={link}
-                ref={(el) => (menuItemsRef.current[index] = el)}
-                className="menu-item"
-              >
-                <span className="menu-text">{link}</span>
-                <span className="hover-bg"></span>
-              </li>
-            ))}
+            {menuItems.map((link, index) => {
+              const delay = link.length * 0.07; // Staggered delay based on text length
+
+              return (
+                <motion.li
+                  key={link}
+                  ref={(el) => (menuItemsRef.current[index] = el)}
+                  className="menu-item"
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.33, 1, 0.68, 1],
+                    delay,
+                  }}
+                >
+                  <motion.span
+                    className="menu-text"
+                    whileHover={{
+                      color: "rgb(0,0,0)",
+                      backgroundColor: "rgb(255,255,255)",
+                      transition: { duration: 0.3 },
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {link}
+                  </motion.span>
+                  <motion.div
+                    className="hover-bg"
+                    initial={{ scaleY: 0 }}
+                    whileHover={{ scaleY: 1 }}
+                    exit={{ scaleY: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  />
+                </motion.li>
+              );
+            })}
           </ul>
         </div>
       )}
