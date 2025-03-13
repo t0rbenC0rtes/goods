@@ -1,27 +1,27 @@
-@use 'loader';
-@use 'hero';
-@use 'navbar';
-@use 'swiper';
-@use 'menuModal';
+@use "loader";
+@use "hero";
+@use "navbar";
+@use "swiper";
+@use "menuModal";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: 'Montreal';
-    src: url(./public/fonts/NeueMontreal-Light.otf);
+  font-family: "Montreal";
+  src: url(./fonts/NeueMontreal-Light.otf);
 }
 @font-face {
-    font-family: 'Suisse';
-    src: url(./public/fonts/SuisseIntlTrial-Regular.otf);
+  font-family: "Suisse";
+  src: url(./fonts/SuisseIntlTrial-Regular.otf);
 }
 
 body {
-    font-family: "Montreal";
-    background-color: #090808;
-    color: white;
-    overflow-x: hidden;    
+  font-family: "Montreal";
+  background-color: #090808;
+  color: white;
+  overflow-x: hidden;
 }
