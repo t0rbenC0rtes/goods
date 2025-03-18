@@ -173,6 +173,105 @@
   margin-bottom: 1rem;
 }
 
+.featured-wrapper {
+  margin: 0 30px;
+}
+.featured-wrapper .line {
+  background-color: white;
+  height: 1px;
+  margin: 20px 0;
+}
+.featured-wrapper .title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8rem;
+}
+.featured-wrapper .title h2 {
+  font-weight: 900;
+  font-size: 3.1875rem;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+}
+.featured-wrapper .title button {
+  background: white;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  color: black;
+  font-family: "Suisse", sans-serif;
+  transition: opacity 0.3s ease-in-out;
+  padding: 0.6rem 1.2rem;
+  border-radius: 1.75rem;
+}
+.featured-wrapper .title button:hover {
+  cursor: pointer;
+}
+.featured-wrapper .works-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.2rem;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .featured-wrapper .works-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+.featured-wrapper .work {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5rem;
+}
+.featured-wrapper .work .image-container {
+  width: 100%;
+  max-width: 50rem;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+.featured-wrapper .work .work-icon {
+  position: absolute;
+  bottom: -20px;
+  right: 10px;
+  height: 50px;
+  width: 50px;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease-out 0.3s;
+  opacity: 0;
+}
+.featured-wrapper .work:hover .work-icon {
+  bottom: 10px;
+  opacity: 1;
+}
+.featured-wrapper .work img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+.featured-wrapper .work img:hover {
+  transform: scale(1.1);
+}
+.featured-wrapper .work h3 {
+  margin-top: 10px;
+  font-size: 2.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+}
+.featured-wrapper .work p {
+  margin-top: 5px;
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  opacity: 0.8;
+}
+
 * {
   margin: 0;
   padding: 0;

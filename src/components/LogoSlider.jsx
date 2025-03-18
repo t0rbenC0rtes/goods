@@ -47,7 +47,7 @@ const LogoSlider = () => {
       modules={[Autoplay]}
       spaceBetween={80}
       slidesPerView={3}
-      loop={false}
+      loop={true}
       autoplay={{
         delay: 0,
         disableOnInteraction: false,

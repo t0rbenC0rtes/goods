@@ -3,6 +3,7 @@ import Loader from "./components/Loader.jsx";
 import Hero from "./components/Hero.jsx";
 import Navbar from "./components/Navbar.jsx";
 import LogoSlider from "./components/LogoSlider.jsx";
+import Featured from "./components/Featured.jsx";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,7 @@ function App() {
           <Navbar />
           <Hero setVideoLoaded={setVideoLoaded} />
           <LogoSlider />
+          <Featured />
         </div>
       )}
     </div>
