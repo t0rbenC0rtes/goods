@@ -121,9 +121,42 @@ const Navbar = () => {
                     {/* Text */}
                     <motion.span
                       className="menu-text"
-                      whileHover={{ color: "rgb(0,0,0)" }}
+                      onHoverStart={() => {
+                        menuItemsRef.current[index]
+                          ?.querySelector(".hover-bg")
+                          ?.animate(
+                            [
+                              { transform: "translateY(100%)" },
+                              { transform: "translateY(0%)" },
+                            ],
+                            {
+                              duration: 300,
+                              easing: "cubic-bezier(0.02, -0.2, 0, 1)",
+                              fill: "forwards",
+                            }
+                          );
+                      }}
+                      onHoverEnd={() => {
+                        menuItemsRef.current[index]
+                          ?.querySelector(".hover-bg")
+                          ?.animate(
+                            [
+                              { transform: "translateY(0%)" },
+                              { transform: "translateY(100%)" },
+                            ],
+                            {
+                              duration: 300,
+                              easing: "linear",
+                              fill: "forwards",
+                            }
+                          );
+                      }}
                       transition={{ duration: 0.3 }}
-                      style={{ position: "relative", zIndex: 2 }}
+                      style={{
+                        position: "relative",
+                        zIndex: 2,
+                      }}
+                      whileHover={{ color: "rgb(0,0,0)" }}
                     >
                       {link}
                     </motion.span>
@@ -131,9 +164,6 @@ const Navbar = () => {
                     {/* Background Animation */}
                     <motion.div
                       className="hover-bg"
-                      initial={{ translateY: "100%" }} // Start fully hidden
-                      whileHover={{ translateY: "0%" }} // Move up on hover
-                      transition={{ duration: 0.3, ease: "easeOut" }}
                       style={{
                         position: "absolute",
                         bottom: 0,
@@ -142,6 +172,7 @@ const Navbar = () => {
                         height: "100%",
                         background: "rgb(255,255,255)",
                         zIndex: 1,
+                        transform: "translateY(100%)",
                       }}
                     />
                   </motion.div>
